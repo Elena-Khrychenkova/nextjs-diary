@@ -32,11 +32,11 @@ export default function LandingPage() {
         </div>
       </div>
       {/* second block */}
-      <div className="h-[420px] bg-green-300 py-[60px] px-[170px]">
+      <div className="h-[420px] bg-green-300 flex justify-center py-[60px] px-[170px]">
         <div className="w-[1100px] h-[300px] bg-gray-300">Slider</div>
       </div>
       {/* third block */}
-      <div className="flex h-[444px] py-[60px] px-[170px] gap-[60px]">
+      <div className="flex justify-center h-[444px] py-[60px] px-[170px] gap-[60px]">
         <Image
           src="/food_intake_diagram.svg"
           width={520}
