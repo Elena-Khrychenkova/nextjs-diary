@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
-    <div className="flex justify-between h-[80px] bg-amber-400 items-center">
+    <div className="flex justify-between h-[80px] items-center border border-b-gray-200">
       {/* Avatar and Logo */}
       <div className="flex items-center">
         <Avatar className="mx-4">

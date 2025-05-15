@@ -1,6 +1,6 @@
 "use client";
 
-import { createFoodIntakeLog, formSchema } from "@/app/actions";
+import { createFoodIntakeLog } from "@/app/actions";
 import { useActionState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { formSchema } from "@/lib/zod";
 
 export default function FoodIntakeForm({
   initialState,
@@ -123,19 +124,29 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Mood</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Happy">Happy</SelectItem>
-                        <SelectItem value="Neutral">Neutral</SelectItem>
-                        <SelectItem value="Sad">Sad</SelectItem>
-                        <SelectItem value="Stressed">Stressed</SelectItem>
-                        <SelectItem value="Tired">Tired</SelectItem>
-                        <SelectItem value="Energetic">Energetic</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Happy">Happy</SelectItem>
+                          <SelectItem value="Neutral">Neutral</SelectItem>
+                          <SelectItem value="Sad">Sad</SelectItem>
+                          <SelectItem value="Stressed">Stressed</SelectItem>
+                          <SelectItem value="Tired">Tired</SelectItem>
+                          <SelectItem value="Energetic">Energetic</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="mood"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>
                     What was your mood when you started your meal?
@@ -144,6 +155,7 @@ export default function FoodIntakeForm({
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="activity"
@@ -151,22 +163,33 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Activity Level</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="None">None</SelectItem>
-                        <SelectItem value="Medium">Medium</SelectItem>
-                        <SelectItem value="High">High</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="None">None</SelectItem>
+                          <SelectItem value="Medium">Medium</SelectItem>
+                          <SelectItem value="High">High</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="activity"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>How active you were today?</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="water"
@@ -174,15 +197,25 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Water Intake</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Yes">Yes</SelectItem>
-                        <SelectItem value="No">No</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Yes">Yes</SelectItem>
+                          <SelectItem value="No">No</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="water"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>
                     Did you drink a glass of water 20 min before your meal?
@@ -210,24 +243,40 @@ export default function FoodIntakeForm({
                       control={form.control}
                       name="foodType"
                       render={({ field }) => {
+                        const selectedValues = field.value ?? [];
+                        const isChecked = selectedValues.includes(item.id);
                         return (
                           <FormItem
                             key={item.id}
                             className="flex flex-row items-start space-x-3 space-y-0"
                           >
                             <FormControl>
-                              <Checkbox
-                                checked={field.value?.includes(item.id)}
-                                onCheckedChange={(checked) => {
-                                  return checked
-                                    ? field.onChange([...field.value, item.id])
-                                    : field.onChange(
-                                        field.value?.filter(
+                              <div>
+                                <Checkbox
+                                  checked={field.value?.includes(item.id)}
+                                  onCheckedChange={(checked) => {
+                                    if (checked) {
+                                      field.onChange([
+                                        ...selectedValues,
+                                        item.id,
+                                      ]);
+                                    } else {
+                                      field.onChange(
+                                        selectedValues.filter(
                                           (value) => value !== item.id
                                         )
                                       );
-                                }}
-                              />
+                                    }
+                                  }}
+                                />
+                                {isChecked && (
+                                  <input
+                                    type="hidden"
+                                    name="foodType"
+                                    value={item.id}
+                                  />
+                                )}
+                              </div>
                             </FormControl>
                             <FormLabel className="font-normal">
                               {item.label}
@@ -250,23 +299,36 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Portion Size</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Small">Small</SelectItem>
-                        <SelectItem value="Medium">Medium</SelectItem>
-                        <SelectItem value="Large">Large</SelectItem>
-                        <SelectItem value="Extra Large">Extra Large</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Small">Small</SelectItem>
+                          <SelectItem value="Medium">Medium</SelectItem>
+                          <SelectItem value="Large">Large</SelectItem>
+                          <SelectItem value="Extra Large">
+                            Extra Large
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="portionSize"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>How much did you eat?</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="sleep"
@@ -274,17 +336,31 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Sleep Hours</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Less than 6">Less than 6</SelectItem>
-                        <SelectItem value="6-7">6-7</SelectItem>
-                        <SelectItem value="7-8">7-8</SelectItem>
-                        <SelectItem value="More than 8">More than 8</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Less than 6">
+                            Less than 6
+                          </SelectItem>
+                          <SelectItem value="6-7">6-7</SelectItem>
+                          <SelectItem value="7-8">7-8</SelectItem>
+                          <SelectItem value="More than 8">
+                            More than 8
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="sleep"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
                   <FormDescription>
                     How much did you sleep today?
@@ -293,6 +369,7 @@ export default function FoodIntakeForm({
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="weight"
@@ -300,17 +377,28 @@ export default function FoodIntakeForm({
                 <FormItem>
                   <FormLabel>Weight Changes</FormLabel>
                   <FormControl>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Down">Down</SelectItem>
-                        <SelectItem value="Same">Same</SelectItem>
-                        <SelectItem value="Up">Up</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Down">Down</SelectItem>
+                          <SelectItem value="Same">Same</SelectItem>
+                          <SelectItem value="Up">Up</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <input
+                        type="hidden"
+                        name="weight"
+                        value={field.value ?? ""}
+                      />
+                    </div>
                   </FormControl>
+
                   <FormDescription>
                     Did you notice any changes in your weight?
                   </FormDescription>
