@@ -14,7 +14,7 @@ export default function Header() {
       </div>
       {/* Sign Up */}
       <div>
-        <Button className="mr-4">Sign Up</Button>
+        <Button className="mr-4">Sign In</Button>
       </div>
     </div>
   );
