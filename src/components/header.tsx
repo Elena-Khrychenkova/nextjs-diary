@@ -7,10 +7,10 @@ export default function Header() {
       {/* Avatar and Logo */}
       <div className="flex items-center">
         <Avatar className="mx-4">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src="/logo_diary_1.jpg" />
+          <AvatarFallback>FD</AvatarFallback>
         </Avatar>
-        <h1>Food Diary</h1>
+        <h1 className="text-[24px] font-bold leading-[32px]">Food Diary</h1>
       </div>
       {/* Sign Up */}
       <div>
