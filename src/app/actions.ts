@@ -37,6 +37,7 @@ export async function createUser(prevState: any, formData: FormData) {
 
 export async function createFoodIntakeLog(prevState: any, formData: FormData) {
   const data = formSchema.parse({
+    user_email: formData.get("user_email"),
     date: formData.get("date"),
     mood: formData.get("mood"),
     activity: formData.get("activity"),
@@ -48,8 +49,8 @@ export async function createFoodIntakeLog(prevState: any, formData: FormData) {
   });
   console.log("Received data", data);
   try {
-    await sql`INSERT INTO food_intake(date, mood, activity, water, food_type, portion, sleep, weight)
-    VALUES(${data.date}, ${data.mood}, ${data.activity}, ${data.water}, ${data.foodType}, ${data.portionSize}, ${data.sleep}, ${data.weight})`;
+    await sql`INSERT INTO food_intake(user_email, date, mood, activity, water, food_type, portion, sleep, weight)
+    VALUES(${data.user_email}, ${data.date}, ${data.mood}, ${data.activity}, ${data.water}, ${data.foodType}, ${data.portionSize}, ${data.sleep}, ${data.weight})`;
   } catch (error) {
     console.log("Error inserting food intake log: ", error);
     return {

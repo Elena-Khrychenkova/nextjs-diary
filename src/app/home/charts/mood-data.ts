@@ -6,10 +6,10 @@ if (!process.env.DB_URL) {
 const sql = postgres(process.env.DB_URL!);
 
 //comparing number of meals by mood: checking how many logs exist per mood
-export async function getMoodCounts() {
+export async function getMoodCounts(user_email: string) {
   try {
     const result =
-      await sql`SELECT mood, COUNT(*)::int AS count  FROM food_intake GROUP BY mood ORDER BY mood`;
+      await sql`SELECT mood, COUNT(*)::int AS count  FROM food_intake WHERE user_email = ${user_email} GROUP BY mood ORDER BY mood`;
 
     return result.map((row) => ({
       mood: row.mood,

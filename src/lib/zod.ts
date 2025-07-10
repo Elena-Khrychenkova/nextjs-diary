@@ -12,6 +12,7 @@ export const signInSchema = object({
 
 // date, mood, activity, water, foodType, portionSize, sleep, weight
 export const formSchema = z.object({
+  user_email: z.string().email(),
   date: z.string(), //later z.date() for date picker
   mood: z.enum(["Happy", "Neutral", "Sad", "Stressed", "Tired", "Energetic"]),
   activity: z.enum(["None", "Medium", "High"]),
