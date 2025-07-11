@@ -3,8 +3,10 @@ import ChartPieLegend from "@/components/pie-chart";
 import { getMoodCounts } from "./mood-data";
 import { getWaterStats } from "./water-data";
 import { getWaterPortionStats } from "./water-portion-data";
+import { getEntriesPerDay } from "./entries-data";
 import { auth } from "@/app/auth";
 import WaterPortionRadarChart from "@/components/radar-chart";
+import { UserEntriesLineChart } from "@/components/entries-line-chart";
 
 export default async function ChartsPage() {
   const session = await auth();
@@ -13,12 +15,14 @@ export default async function ChartsPage() {
   const waterPortionData = await getWaterPortionStats(
     session?.user?.email ?? ""
   );
+  const entriesPerDayData = await getEntriesPerDay(session?.user?.email ?? "");
   return (
     <div className="flex flex-col mt-20 gap-4">
       <MoodChart data={moodCountsData} />
       <div className="flex flex-col justify-center">
         <ChartPieLegend data={waterStatsData} />
         <WaterPortionRadarChart data={waterPortionData} />
+        <UserEntriesLineChart data={entriesPerDayData} />
       </div>
     </div>
   );
