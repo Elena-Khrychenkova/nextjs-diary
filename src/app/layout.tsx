@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <div className="flex-grow">
           <Header />
-          {children}
+          <div className="bg-[#FDF5F2]">{children}</div>
         </div>
         <Footer />
       </body>

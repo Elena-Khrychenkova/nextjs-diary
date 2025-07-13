@@ -4,16 +4,16 @@ import Image from "next/image";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       {/* first block */}
       <div className="flex gap-10 items-center justify-center px-42.5 h-[364px]">
         {/* Logo Image */}
         <div>
           <Image
-            src="/logo_diary_1.jpg"
+            src="/logo2.png"
             className="rounded-[50%]"
-            width={100}
-            height={100}
+            width={200}
+            height={200}
             alt="Food Intake Trend"
           />
         </div>
