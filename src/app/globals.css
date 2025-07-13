@@ -124,3 +124,21 @@ p, h1 {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse 8s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite
+  }
+}
+
+@keyframes float {
+  0% {transform: translateY(0px);}
+  50% {transform: translateY(-10px);}
+  100% {transform: translateY(0px);}
+}

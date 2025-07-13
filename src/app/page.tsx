@@ -214,66 +214,172 @@ export default function LandingPage() {
         </div>
       </div>
       {/* fifth block */}
-      <div className=" mt-[60px] mb-[120px] gap-[24px] flex flex-col items-center">
-        <div className="w-[600px] flex flex-col items-center bg-[#F8F6F4] py-4 px-4 rounded-xl shadow-sm">
-          <h1 className="text-[40px] font-bold leading-[48px]">Insights</h1>
-          <p className="mt-4 mb-2">
-            Discover how food connects with mood, energy, sleep, and other
-            lifestyle factors.
-          </p>
-          <div className="w-full border-t border-dotted border-[#5025C5]" />
-          <p className="px-4 mt-2">
-            We`ve gathered thought-provoking articles and practical guides from
-            trusted sources. Whether you're curious about nutrition science or
-            looking for simple tips, there's something here for everyone.
-          </p>
+      <div className="relative overflow-hidden">
+        {/* Left-side circle */}
+        {/* <div className="absolute left-[-80px] top-[20%] z-0 animate-pulse-slow">
+          <svg
+            viewBox="0 0 100 100"
+            fill="#5025C5"
+            opacity="0.4"
+            className="w-48 h-48"
+          >
+            <circle cx="50" cy="50" r="50" />
+          </svg>
+        </div> */}
+
+        {/* Right-side triangle */}
+        {/* <div className="absolute right-[-60px] top-[30%] z-0 animate-spin-slow">
+          <svg
+            viewBox="0 0 100 100"
+            fill="#E06159"
+            opacity="0.15"
+            className="w-48 h-48"
+          >
+            <polygon points="50,0 100,100 0,100" />
+          </svg>
+        </div> */}
+
+        {/* Spiral Ring - Top Left */}
+        <div className="hidden md:block absolute top-[-60px] left-[80px] z-0 animate-spin-slow">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-60 h-60 opacity-10"
+            fill="none"
+            stroke="#E06159"
+            strokeWidth="4"
+          >
+            <path
+              d="M50,10 
+             A40,40 0 1,1 49.9,10.01 
+             M50,25 
+             A25,25 0 1,0 50.1,25.01"
+            />
+          </svg>
         </div>
-        <div className="relative w-[600px] mx-auto">
-          <Card className="w-full h-full flex flex-col">
-            <CardHeader className="mt-6">
-              <CardTitle className="text-[#5025c5]">
-                {currentCard.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex">
-              <div className="relative h-[280px] w-full">
-                <Image
-                  src={currentCard.image}
-                  alt={currentCard.title}
-                  fill
-                  className="object-cover rounded-xl shadow-2xl"
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex items-center justify-between p-4 gap-6">
-              <p className="text-sm text-gray-600">{currentCard.description}</p>
-              <Button
-                asChild
-                className="bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow"
-              >
-                <a
-                  href={currentCard.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+
+        {/* Purple Circle - Floating Left */}
+        <div className="hidden md:block absolute top-[10%] left-[-60px] z-0 animate-float">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-64 h-64 text-[#5025C5] opacity-10"
+            fill="currentColor"
+          >
+            <circle cx="50" cy="50" r="50" />
+          </svg>
+        </div>
+
+        {/* Coral Circle - Floating Left  */}
+        <div className="hidden md:block absolute top-[6%] right-[-80px] z-0 animate-float">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-84 h-84 text-[#E06159] opacity-10"
+            fill="currentColor"
+          >
+            <circle cx="50" cy="50" r="50" />
+          </svg>
+        </div>
+
+        {/* Hexagon - Bottom Left */}
+        <div className="hidden md:block absolute bottom-[-80px] left-[40px] z-0 animate-spin-slow">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-64 h-64 text-[#E06159] opacity-10"
+            fill="currentColor"
+          >
+            <polygon points="50,0 93,25 93,75 50,100 7,75 7,25" />
+          </svg>
+        </div>
+        {/* Spiral Ring - Top Right */}
+        <div className="hidden md:block absolute top-[-60px] right-[80px] z-0 animate-spin-slow">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-40 h-40 opacity-10"
+            fill="none"
+            stroke="#5025C5"
+            strokeWidth="4"
+          >
+            <path
+              d="M50,10 
+             A40,40 0 1,1 49.9,10.01 
+             M50,25 
+             A25,25 0 1,0 50.1,25.01"
+            />
+          </svg>
+        </div>
+        {/* Diamond - Bottom Right */}
+        <div className="hidden md:block absolute bottom-[-60px] right-[-40px] z-0 animate-float">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-64 h-64 text-[#5025C5] opacity-10 rotate-45"
+            fill="currentColor"
+          >
+            <rect x="25" y="25" width="50" height="50" />
+          </svg>
+        </div>
+        <div className=" mt-[60px] mb-[120px] gap-[24px] flex flex-col items-center">
+          <div className="w-[600px] flex flex-col items-center bg-[#F8F6F4] py-4 px-4 rounded-xl shadow-sm">
+            <h1 className="text-[40px] font-bold leading-[48px]">Insights</h1>
+            <p className="mt-4 mb-2">
+              Discover how food connects with mood, energy, sleep, and other
+              lifestyle factors.
+            </p>
+            <div className="w-full border-t border-dotted border-[#5025C5]" />
+            <p className="px-4 mt-2">
+              We`ve gathered thought-provoking articles and practical guides
+              from trusted sources. Whether you're curious about nutrition
+              science or looking for simple tips, there's something here for
+              everyone.
+            </p>
+          </div>
+          <div className="relative w-[600px] mx-auto">
+            <Card className="w-full h-full flex flex-col">
+              <CardHeader className="mt-6">
+                <CardTitle className="text-[#5025c5]">
+                  {currentCard.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex">
+                <div className="relative h-[280px] w-full">
+                  <Image
+                    src={currentCard.image}
+                    alt={currentCard.title}
+                    fill
+                    className="object-cover rounded-xl shadow-2xl"
+                  />
+                </div>
+              </CardContent>
+              <CardFooter className="flex items-center justify-between p-4 gap-6">
+                <p className="text-sm text-gray-600">
+                  {currentCard.description}
+                </p>
+                <Button
+                  asChild
+                  className="bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow"
                 >
-                  Learn More
-                </a>
-              </Button>
-            </CardFooter>
-          </Card>
-          {/* Cards Navigation */}
-          <button
-            onClick={prev}
-            className="absolute top-1/2 left-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 hover:shadow"
-          >
-            <ChevronLeft className="w-4 h-4 text-gray-700" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute top-1/2 right-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100  hover:shadow"
-          >
-            <ChevronRight className="w-4 h-4 text-gray-700" />
-          </button>
+                  <a
+                    href={currentCard.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn More
+                  </a>
+                </Button>
+              </CardFooter>
+            </Card>
+            {/* Cards Navigation */}
+            <button
+              onClick={prev}
+              className="absolute top-1/2 left-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 hover:shadow"
+            >
+              <ChevronLeft className="w-4 h-4 text-gray-700" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute top-1/2 right-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100  hover:shadow"
+            >
+              <ChevronRight className="w-4 h-4 text-gray-700" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
