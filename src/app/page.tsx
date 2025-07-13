@@ -1,12 +1,29 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Diagram from "../../public/food_intake_diagram.svg";
 import Image from "next/image";
+import { Shadows_Into_Light } from "next/font/google";
+import { useEffect, useState } from "react";
 
 export default function LandingPage() {
+  const meals = [
+    "/meals_image.jpg",
+    "/meals_image222.jpg",
+    "/meals_image333.jpg",
+  ];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % meals.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       {/* first block */}
-      <div className="flex gap-10 items-center justify-center px-42.5 h-[364px]">
+      <div className="flex gap-10 items-center justify-center h-[364px]">
         {/* Logo Image */}
         <div>
           <Image
@@ -14,57 +31,65 @@ export default function LandingPage() {
             className="rounded-[50%]"
             width={200}
             height={200}
-            alt="Food Intake Trend"
+            alt="Food Diary Logo"
           />
         </div>
         {/* Welcome Text */}
-        <div className="flex flex-col h-[244px] w-[760px] justify-center">
-          <div className="flex flex-col ">
-            <h1 className="text-[24px] font-bold leading-[32px]">
-              Welcome to Food Diary!
+        <div className="flex flex-col h-[244px] w-[760px] max-w-[760px] justify-center space-y-4 text-gray-900">
+          <div className="flex flex-col bg-[#F8F6F4] p-4 rounded-xl shadow-sm">
+            <h1 className="text-3xl font-semibold leading-snug tracking-tight mb-4">
+              Welcome to <span className="text-[#5025C5]">Food Diary</span>!
             </h1>
-            <p className="text-[16px] font-normal leading-[24px] mt-4">
+            <p className="text-base leading-relaxed">
               Track your food intake and health metrics
             </p>
-            <p className="text-[16px] font-normal leading-[24px] mb-4">
+            <p className="text-base leading-relaxed mb-2">
               Join us and start your journey towards healthier lifestyle
             </p>
-            <p className="text-[16px] font-normal leading-[24px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum
+            <div className="w-full border-t border-dotted border-[#5025C5]" />
+            <p className="text-base leading-relaxed mt-2">
+              With Food Diary, you can gain valuable insight into how your daily
+              meals affect your energy, mood, sleep, and overall well-being. Our
+              platform helps you build healthy habits through consistent
+              tracking and simple visualizations. Whether you're working toward
+              specific goals or just want to be more mindful of what you eat,
+              Food Diary provides a clear and personalized picture of your
+              progress. It`s your daily companion on the journey to a healthier,
+              more balanced life.
             </p>
           </div>
         </div>
         {/* Register */}
         <div>
-          <Button className="w-[160px] h-[48px]">Register Now</Button>
+          <Button className="w-[160px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
+            Register Now
+          </Button>
         </div>
       </div>
       {/* second block */}
-      <div className="h-[420px] flex justify-center py-[60px] px-[170px] items-center border border-t-gray-200">
-        <div className="w-[1100px] h-[300px] bg-gray-300">
+      <div className="relative h-[420px] flex justify-center border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)]">
+        <div className="w-[1100px] h-[300px] rounded-[10px] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.5),_0_-4px_6px_-2px_rgba(0,0,0,0.5)]">
           <Image
-            src="/meals_image.jpg"
+            src={meals[current]}
             className="rounded-[10px]"
             width={1100}
             height={300}
-            alt="Food Intake Trend"
+            alt="Carousel Of Meals"
           />
+          <div className="absolute mt-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {meals.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 w-2 rounded-full ${
+                  index === current ? "bg-[#5025C5]" : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
       {/* third block */}
       <div className="flex justify-center h-[444px] py-[60px] px-[170px] gap-[60px]">
-        {/* <Image
-          src="/food_intake_diagram.svg"
-          width={520}
-          height={324}
-          alt="Food Intake vs. Activities Diagram"
-        /> */}
         <Image
           src="/mood_image.png"
           width={520}
@@ -77,7 +102,9 @@ export default function LandingPage() {
               Your Data Metrics
             </h1>
             <p>View how food intake correlates with other variablse</p>
-            <Button className="w-[240px] h-[48px]">View All Metrics</Button>
+            <Button className="w-[240px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d]">
+              View All Metrics
+            </Button>
           </div>
 
           {/* <ol className="flex w-[520px] h-[96px] justify-between">
@@ -97,7 +124,7 @@ export default function LandingPage() {
         </div>
       </div>
       {/* fourth block */}
-      <div className="h-[960px] py-[60px] px-[170px] gap-[100px] border border-t-gray-200">
+      <div className="h-[960px] py-[60px] px-[170px] gap-[100px] border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)]">
         <div className="flex justify-center">
           <div className="flex h-[180px] w-[1100px] items-center justify-between">
             <div className="flex flex-col gap-[24px] h-[96px] justify-center">
@@ -123,18 +150,6 @@ export default function LandingPage() {
             </div>
 
             <div className="flex gap-[40px]">
-              {/* <Image
-                src="/trend.svg"
-                width={528.5}
-                height={440}
-                alt="Food Intake Trend"
-              />
-              <Image
-                src="/distribution.svg"
-                width={528.5}
-                height={440}
-                alt="Distribution"
-              /> */}
               <Image
                 src="/water_intake_image.png"
                 width={528.5}
@@ -152,7 +167,7 @@ export default function LandingPage() {
         </div>
       </div>
       {/* fifth block */}
-      <div className="h-[770px] py-[60px] px-[170px] gap-[60px] flex flex-col items-center border border-t-gray-200">
+      <div className="h-[770px] py-[60px] px-[170px] gap-[60px] flex flex-col items-center">
         <div className=" h-[168px] w-[1100px] gap-[24px] flex flex-col items-center">
           <h1 className="text-[40px] font-bold leading-[48px]">Insights</h1>
           <p>
@@ -165,7 +180,7 @@ export default function LandingPage() {
           <div className="flex items-center h-[74px] p-[12px]">
             <p>Title</p>
           </div>
-          <div className="h-[300px] bg-gray-200 flex items-center justify-center">
+          <div className="h-[300px] bg-[#F8ECE9] flex items-center justify-center">
             <p>Healthy Meal</p>
           </div>
           <div className="h-[48px] p-[12px]">

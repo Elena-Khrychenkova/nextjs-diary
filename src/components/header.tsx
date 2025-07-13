@@ -16,7 +16,7 @@ export default function Header() {
       </div>
       {/* Sign Up */}
       <div>
-        <Button className="mr-4 bg-[#5025C5] hover:bg-[#3f1e9d]">
+        <Button className="mr-4 bg-[#5025C5] hover:bg-[#3f1e9d] shadow-lg hover:shadow">
           Sign In
         </Button>
       </div>
