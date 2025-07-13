@@ -30,7 +30,7 @@ export function UserEntriesLineChart({
   data: { date: string; count: number }[];
 }) {
   return (
-    <Card className="flex flex-col w-full max-w-3xl mx-auto">
+    <Card className="w-full max-w-3xl">
       <CardHeader>
         <CardTitle>Meal Entries Per Day</CardTitle>
         <CardDescription>Showing daily form submissions</CardDescription>

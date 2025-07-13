@@ -25,7 +25,7 @@ export default function ChartPieLegend({ data }: { data: any[] }) {
     "water-No": { label: "Didn't Drink", color: "#f87171" },
   };
   return (
-    <Card className="flex flex-col w-full max-w-3xl mx-auto">
+    <Card className="w-full max-w-3xl ">
       <CardHeader className="items-center pb-0">
         <CardTitle>Water Intake</CardTitle>
         <CardDescription>

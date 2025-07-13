@@ -22,6 +22,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { Cell } from "recharts";
 
 export default function MoodChart({ data }: { data: any }) {
   const chartConfig = {
@@ -29,8 +30,17 @@ export default function MoodChart({ data }: { data: any }) {
       label: "Meals",
     },
   };
+  const colors = [
+    "#818cf8", // indigo
+    "#f87171", // red
+    "#34d399", // green
+    "#fbbf24", // yellow
+    "#60a5fa", // blue
+    "#c084fc", // purple
+    "#f472b6", // pink
+  ];
   return (
-    <Card className="w-full max-w-3xl mx-auto">
+    <Card className="w-full max-w-3xl">
       <CardHeader>
         <CardTitle>Mood Tracker</CardTitle>
         <CardDescription>How your meals relate to moods</CardDescription>
@@ -45,14 +55,18 @@ export default function MoodChart({ data }: { data: any }) {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="count" fill="#818cf8" radius={4} />
+            <Bar dataKey="count" fill="#818cf8" radius={4}>
+              {data.map((_: any, index: any) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={colors[index % colors.length]}
+                />
+              ))}
+            </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        {/* <div className="flex gap-2 font-medium leading-none">
-          Trending up <TrendingUp className="h-4 w-4" />
-        </div> */}
         <div className="leading-none text-muted-foreground">
           Showing total mood entries
         </div>

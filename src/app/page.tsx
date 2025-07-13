@@ -59,11 +59,17 @@ export default function LandingPage() {
       </div>
       {/* third block */}
       <div className="flex justify-center h-[444px] py-[60px] px-[170px] gap-[60px]">
-        <Image
+        {/* <Image
           src="/food_intake_diagram.svg"
           width={520}
           height={324}
           alt="Food Intake vs. Activities Diagram"
+        /> */}
+        <Image
+          src="/mood_image.png"
+          width={520}
+          height={324}
+          alt="Mood Tracker Image"
         />
         <div className="flex flex-col gap-[60px]">
           <div className="flex flex-col gap-[24px]">
@@ -74,7 +80,7 @@ export default function LandingPage() {
             <Button className="w-[240px] h-[48px]">View All Metrics</Button>
           </div>
 
-          <ol className="flex w-[520px] h-[96px] justify-between">
+          {/* <ol className="flex w-[520px] h-[96px] justify-between">
             <li className="flex flex-col w-[160px] h-[96px] border border-gray-400 py-[16px] px-[16px] gap-[6px]">
               <p>Sleep</p>
               <p>6 hours</p>
@@ -87,7 +93,7 @@ export default function LandingPage() {
               <p>Hydration</p>
               <p>8 hours</p>
             </li>
-          </ol>
+          </ol> */}
         </div>
       </div>
       {/* fourth block */}
@@ -117,7 +123,7 @@ export default function LandingPage() {
             </div>
 
             <div className="flex gap-[40px]">
-              <Image
+              {/* <Image
                 src="/trend.svg"
                 width={528.5}
                 height={440}
@@ -128,6 +134,18 @@ export default function LandingPage() {
                 width={528.5}
                 height={440}
                 alt="Distribution"
+              /> */}
+              <Image
+                src="/water_intake_image.png"
+                width={528.5}
+                height={440}
+                alt="Water Intake Chart"
+              />
+              <Image
+                src="/entries_per_day_image.png"
+                width={528.5}
+                height={440}
+                alt="Meal Entries Per Day Chart"
               />
             </div>
           </div>
