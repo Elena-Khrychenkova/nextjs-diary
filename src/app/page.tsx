@@ -89,64 +89,74 @@ export default function LandingPage() {
         </div>
       </div>
       {/* third block */}
-      <div className="flex justify-center h-[444px] py-[60px] px-[170px] gap-[60px]">
+      <div className="flex justify-center items-center gap-[60px] mt-[120px]">
         <Image
           src="/mood_image.png"
           width={520}
           height={324}
-          alt="Mood Tracker Image"
+          alt="Mood Tracker Chart"
         />
-        <div className="flex flex-col gap-[60px]">
+
+        <div className="flex flex-col w-[520px] h-[373px] bg-[#F8F6F4] px-4 rounded-xl shadow-sm justify-center ">
           <div className="flex flex-col gap-[24px]">
             <h1 className="text-[40px] font-bold leading-[48px]">
               Your Data Metrics
             </h1>
-            <p>View how food intake correlates with other variablse</p>
-            <Button className="w-[240px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d]">
+            <p>See how your emotions influence your eating habits</p>
+            <Button className="w-[240px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
               View All Metrics
             </Button>
+            <div className="flex flex-col">
+              <p>
+                Track mood patterns and observe how they correlate with the
+                number of meals you eat each day.
+              </p>
+              <p>
+                Use these insights to better understand emotional triggers and
+                develop more mindful eating routines.
+              </p>
+            </div>
           </div>
-
-          {/* <ol className="flex w-[520px] h-[96px] justify-between">
-            <li className="flex flex-col w-[160px] h-[96px] border border-gray-400 py-[16px] px-[16px] gap-[6px]">
-              <p>Sleep</p>
-              <p>6 hours</p>
-            </li>
-            <li className="flex flex-col w-[160px] h-[96px] border border-gray-400 py-[16px] px-[16px] gap-[6px]">
-              <p>Sport</p>
-              <p>2 hours</p>
-            </li>
-            <li className="flex flex-col w-[160px] h-[96px] border border-gray-400 py-[16px] px-[16px] gap-[6px]">
-              <p>Hydration</p>
-              <p>8 hours</p>
-            </li>
-          </ol> */}
         </div>
       </div>
       {/* fourth block */}
-      <div className="h-[960px] py-[60px] px-[170px] gap-[100px] border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)]">
+      <div className="border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)] mt-[120px]">
         <div className="flex justify-center">
           <div className="flex h-[180px] w-[1100px] items-center justify-between">
-            <div className="flex flex-col gap-[24px] h-[96px] justify-center">
+            <div className="flex flex-col gap-[24px] w-[520px] justify-center bg-[#F8F6F4] px-4 rounded-xl shadow-sm">
               <h1 className="text-[40px] font-bold leading-[48px]">
                 Log Your Data
               </h1>
               <p>Enter details about your daily food intake</p>
+              <div>
+                <p>
+                  Keep track of what, when, and how much you eat to gain a
+                  clearer picture of your habits.
+                </p>
+                <p>
+                  Logging consistently helps you stay accountable and uncover
+                  patterns in your nutrition over time.
+                </p>
+              </div>
             </div>
-            <Button className="w-[160px] h-[48px]">Complete the Form</Button>
+            <Button className="w-[160px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
+              Complete the Form
+            </Button>
           </div>
         </div>
 
         <div className="flex justify-center">
           <div className="h-[560px] flex flex-col gap-[24px] w-[1100px]">
             <div className="flex flex-col items-end  gap-[24px]">
-              <h1 className="text-[40px] font-bold leading-[48px]">
-                Visualize Your Data
-              </h1>
-              <p>
-                Interactive charts displaying the correlation between food
-                intake and lifestyle factors
-              </p>
+              <div className="w-[520px] flex flex-col items-end bg-[#F8F6F4] px-4 rounded-xl shadow-sm">
+                <h1 className="text-[40px] font-bold leading-[48px]">
+                  Visualize Your Data
+                </h1>
+                <p>
+                  Interactive charts displaying the correlation between food
+                  intake and lifestyle factors
+                </p>
+              </div>
             </div>
 
             <div className="flex gap-[40px]">
