@@ -1,10 +1,16 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Diagram from "../../public/food_intake_diagram.svg";
 import Image from "next/image";
-import { Shadows_Into_Light } from "next/font/google";
 import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function LandingPage() {
   const meals = [
@@ -13,6 +19,37 @@ export default function LandingPage() {
     "/meals_image333.jpg",
   ];
   const [current, setCurrent] = useState(0);
+
+  const cards = [
+    {
+      title:
+        "Can Food Influence Your Mood? Exploring the Link Between Diet and Depression",
+      description:
+        "From stress eating to the Mediterranean diet, this article explores the complex relationship between what we eat and how we feel. Learn what current research says about dietary patterns and the potential connection to depression and mental health.",
+      image: "/article_image1.jpg",
+      link: "https://www.health.harvard.edu/mind-and-mood/food-and-mood-is-there-a-connection",
+    },
+    {
+      title: "Do You Really Need 8 Glasses of Water per Day?",
+      description:
+        "Is the “8 glasses a day” rule fact or fiction? This article breaks down the science of hydration, where the myth came from, and why your body is better at regulating water needs than you think. Learn how much water you actually need and when it really matters.",
+      image: "/article_image2.jpg",
+      link: "https://www.mcgill.ca/oss/article/health-nutrition/water-myth",
+    },
+    {
+      title:
+        "How Much Protein Do You Really Need? The Truth Behind High-Protein Diets",
+      description:
+        "High-protein diets are everywhere—from Paleo to protein shakes—but how much is too much? This article explores the health benefits and risks of protein, how much your body actually needs, and why moderation matters for long-term wellness.",
+      image: "/article_image3.jpg",
+      link: "https://www.bbc.co.uk/food/articles/should_you_worry_about_how_much_protein_you_eat",
+    },
+  ];
+  const [cardsCurrent, setCardsCurrent] = useState(0);
+  const next = () => setCardsCurrent((prev) => (prev + 1) % cards.length);
+  const prev = () =>
+    setCardsCurrent((prev) => (prev - 1 + cards.length) % cards.length);
+  const currentCard = cards[cardsCurrent];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -120,7 +157,7 @@ export default function LandingPage() {
         </div>
       </div>
       {/* fourth block */}
-      <div className="border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)] mt-[120px]">
+      <div className="border-b border-[#F8ECE9] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.06)] mt-[60px]">
         <div className="flex justify-center">
           <div className="flex h-[180px] w-[1100px] items-center justify-between">
             <div className="flex flex-col gap-[24px] w-[520px] justify-center bg-[#F8F6F4] px-4 rounded-xl shadow-sm">
@@ -146,8 +183,8 @@ export default function LandingPage() {
         </div>
 
         <div className="flex justify-center">
-          <div className="h-[560px] flex flex-col gap-[24px] w-[1100px]">
-            <div className="flex flex-col items-end  gap-[24px]">
+          <div className="h-[560px] flex flex-col gap-[60px] w-[1100px]">
+            <div className="flex flex-col items-end ">
               <div className="w-[520px] flex flex-col items-end bg-[#F8F6F4] px-4 rounded-xl shadow-sm">
                 <h1 className="text-[40px] font-bold leading-[48px]">
                   Visualize Your Data
@@ -177,25 +214,66 @@ export default function LandingPage() {
         </div>
       </div>
       {/* fifth block */}
-      <div className="h-[770px] py-[60px] px-[170px] gap-[60px] flex flex-col items-center">
-        <div className=" h-[168px] w-[1100px] gap-[24px] flex flex-col items-center">
+      <div className=" mt-[60px] mb-[120px] gap-[24px] flex flex-col items-center">
+        <div className="w-[600px] flex flex-col items-center bg-[#F8F6F4] py-4 px-4 rounded-xl shadow-sm">
           <h1 className="text-[40px] font-bold leading-[48px]">Insights</h1>
-          <p>
-            See how experts suggest balancing food with various lifestyle
-            choices
+          <p className="mt-4 mb-2">
+            Discover how food connects with mood, energy, sleep, and other
+            lifestyle factors.
           </p>
-          <Button className="w-[160px] h-[48px]">View More</Button>
+          <div className="w-full border-t border-dotted border-[#5025C5]" />
+          <p className="px-4 mt-2">
+            We`ve gathered thought-provoking articles and practical guides from
+            trusted sources. Whether you're curious about nutrition science or
+            looking for simple tips, there's something here for everyone.
+          </p>
         </div>
-        <div className="h-[422px] w-[600px] border border-gray-200 rounded-xl">
-          <div className="flex items-center h-[74px] p-[12px]">
-            <p>Title</p>
-          </div>
-          <div className="h-[300px] bg-[#F8ECE9] flex items-center justify-center">
-            <p>Healthy Meal</p>
-          </div>
-          <div className="h-[48px] p-[12px]">
-            <p>Balanced meals for a healthier life</p>
-          </div>
+        <div className="relative w-[600px] mx-auto">
+          <Card className="w-full h-full flex flex-col">
+            <CardHeader className="mt-6">
+              <CardTitle className="text-[#5025c5]">
+                {currentCard.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex">
+              <div className="relative h-[280px] w-full">
+                <Image
+                  src={currentCard.image}
+                  alt={currentCard.title}
+                  fill
+                  className="object-cover rounded-xl shadow-2xl"
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="flex items-center justify-between p-4 gap-6">
+              <p className="text-sm text-gray-600">{currentCard.description}</p>
+              <Button
+                asChild
+                className="bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow"
+              >
+                <a
+                  href={currentCard.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn More
+                </a>
+              </Button>
+            </CardFooter>
+          </Card>
+          {/* Cards Navigation */}
+          <button
+            onClick={prev}
+            className="absolute top-1/2 left-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 hover:shadow"
+          >
+            <ChevronLeft className="w-4 h-4 text-gray-700" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute top-1/2 right-[-60px] -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100  hover:shadow"
+          >
+            <ChevronRight className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
       </div>
     </div>
