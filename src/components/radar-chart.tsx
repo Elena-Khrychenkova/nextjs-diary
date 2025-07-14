@@ -44,8 +44,8 @@ export default function WaterPortionRadarChart({
 }) {
   const transformedData = reshapeRadarData(data);
   const chartConfig: ChartConfig = {
-    Yes: { label: "Drank Water", color: "#4ade80" },
-    No: { label: "Didn't Drink", color: "#f87171" },
+    Yes: { label: "Drank Water", color: "#34d399" },
+    No: { label: "Didn't Drink", color: "#e06159" },
   };
   return (
     <Card className="w-full max-w-3xl">
@@ -73,8 +73,8 @@ export default function WaterPortionRadarChart({
             />
             <PolarAngleAxis dataKey="portion" />
             <PolarGrid />
-            <Radar dataKey="Yes" fill="#4ade80" fillOpacity={0.5} />
-            <Radar dataKey="No" fill="#f87171" />
+            <Radar dataKey="Yes" fill="#34d399" fillOpacity={0.5} />
+            <Radar dataKey="No" fill="#e06159" />
             <ChartLegend className="mt-8" content={<ChartLegendContent />} />
           </RadarChart>
         </ChartContainer>

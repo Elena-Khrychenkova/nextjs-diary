@@ -20,7 +20,7 @@ import {
 const chartConfig = {
   count: {
     label: "Entries",
-    color: "var(--chart-1)",
+    color: "#f472b6",
   },
 } satisfies ChartConfig;
 
@@ -38,7 +38,7 @@ export function UserEntriesLineChart({
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
+          className="aspect-auto h-[320px] w-full"
         >
           <LineChart
             accessibilityLayer
@@ -81,7 +81,7 @@ export function UserEntriesLineChart({
             <Line
               dataKey="count"
               type="monotone"
-              stroke="var(--chart-1)"
+              stroke="#f472b6"
               strokeWidth={2}
               dot={false}
             />
