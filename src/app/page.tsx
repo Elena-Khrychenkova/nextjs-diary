@@ -215,30 +215,6 @@ export default function LandingPage() {
       </div>
       {/* fifth block */}
       <div className="relative overflow-hidden">
-        {/* Left-side circle */}
-        {/* <div className="absolute left-[-80px] top-[20%] z-0 animate-pulse-slow">
-          <svg
-            viewBox="0 0 100 100"
-            fill="#5025C5"
-            opacity="0.4"
-            className="w-48 h-48"
-          >
-            <circle cx="50" cy="50" r="50" />
-          </svg>
-        </div> */}
-
-        {/* Right-side triangle */}
-        {/* <div className="absolute right-[-60px] top-[30%] z-0 animate-spin-slow">
-          <svg
-            viewBox="0 0 100 100"
-            fill="#E06159"
-            opacity="0.15"
-            className="w-48 h-48"
-          >
-            <polygon points="50,0 100,100 0,100" />
-          </svg>
-        </div> */}
-
         {/* Spiral Ring - Top Left */}
         <div className="hidden md:block absolute top-[-60px] left-[80px] z-0 animate-spin-slow">
           <svg

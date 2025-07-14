@@ -31,13 +31,13 @@ export default function MoodChart({ data }: { data: any }) {
     },
   };
   const colors = [
-    "#818cf8", // indigo
-    "#f87171", // red
-    "#34d399", // green
-    "#fbbf24", // yellow
-    "#60a5fa", // blue
-    "#c084fc", // purple
-    "#f472b6", // pink
+    "#5025c5",
+    "#e06159",
+    "#fbbf24",
+    "#34d399",
+    "#a855f7",
+    "#60a5fa",
+    "#f472b6",
   ];
   return (
     <Card className="w-full max-w-3xl">
