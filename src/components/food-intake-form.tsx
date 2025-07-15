@@ -104,7 +104,10 @@ export default function FoodIntakeForm({
   ] as const;
   return (
     <Form {...form}>
-      <form action={formAction} className="flex flex-col mt-20 gap-20">
+      <form
+        action={formAction}
+        className="flex flex-col gap-20 bg-[#F8F6F4] p-6 rounded-xl shadow-sm"
+      >
         <div className="flex justify-center gap-20 ">
           <div className="flex flex-col gap-10">
             <input
@@ -239,7 +242,7 @@ export default function FoodIntakeForm({
               name="foodType"
               render={() => (
                 <FormItem>
-                  <div className="mb-4">
+                  <div>
                     <FormLabel className="text-base">Food Type</FormLabel>
                     <FormDescription>
                       Select the items you want to display in the sidebar.
@@ -417,7 +420,12 @@ export default function FoodIntakeForm({
           </div>
         </div>
         <div className="flex justify-center">
-          <Button type="submit">Submit</Button>
+          <Button
+            type="submit"
+            className="bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow"
+          >
+            Submit
+          </Button>
         </div>
       </form>
     </Form>
