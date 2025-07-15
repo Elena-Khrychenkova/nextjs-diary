@@ -8,7 +8,7 @@ export default async function LoginPage() {
   const session = await auth();
   if (session) redirect("/home");
   return (
-    <div className="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+    <div className="bg-[#FDF5F2] flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="w-full max-w-sm">
         <LoginForm />
         <div className="grid gap-4 sm:grid-cols-2 mt-2 mb-2">
