@@ -8,9 +8,11 @@ import { auth } from "@/app/auth";
 import WaterPortionRadarChart from "@/components/radar-chart";
 import { UserEntriesLineChart } from "@/components/entries-line-chart";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export default async function ChartsPage() {
   const session = await auth();
+  if (!session) redirect("/login");
   const moodCountsData = await getMoodCounts(session?.user?.email ?? "");
   const waterStatsData = await getWaterStats(session?.user?.email ?? "");
   const waterPortionData = await getWaterPortionStats(

@@ -99,7 +99,9 @@ export default function LandingPage() {
         {/* Register */}
         <div>
           <Button className="w-[160px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
-            Register Now
+            <a href="/signup" rel="noopener noreferrer">
+              Register Now
+            </a>
           </Button>
         </div>
       </div>
@@ -141,7 +143,9 @@ export default function LandingPage() {
             </h1>
             <p>See how your emotions influence your eating habits</p>
             <Button className="w-[240px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
-              View All Metrics
+              <a href="/home/charts" rel="noopener noreferrer">
+                View All Metrics
+              </a>
             </Button>
             <div className="flex flex-col">
               <p>
@@ -177,7 +181,9 @@ export default function LandingPage() {
               </div>
             </div>
             <Button className="w-[160px] h-[48px] bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
-              Complete the Form
+              <a href="/home/form" rel="noopener noreferrer">
+                Complete the Form
+              </a>
             </Button>
           </div>
         </div>

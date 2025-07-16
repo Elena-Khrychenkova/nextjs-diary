@@ -17,7 +17,9 @@ export default function Header() {
       {/* Sign Up */}
       <div>
         <Button className="mr-4 bg-[#5025C5] hover:bg-[#3f1e9d] shadow-lg hover:shadow">
-          Sign In
+          <a href="/login" rel="noopener noreferrer">
+            Sign In
+          </a>
         </Button>
       </div>
     </header>

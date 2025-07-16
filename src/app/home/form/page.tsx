@@ -1,9 +1,11 @@
 import { auth } from "@/app/auth";
 import FoodIntakeForm from "@/components/food-intake-form";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export default async function FormPage() {
   const session = await auth();
+  if (!session) redirect("/login");
   return (
     <div className="relative overflow-hidden">
       {/*Coral Circle - Top Left */}
