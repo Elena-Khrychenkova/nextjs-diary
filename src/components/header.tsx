@@ -1,7 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import SignOutButton from "./ui/signout-button";
+import SignInButton from "./ui/signin-button";
 
-export default function Header() {
+export default function Header({ session }: { session: any }) {
   return (
     <header className="flex justify-between h-[80px] items-center bg-[#FAFAFA] shadow-md sticky top-0 z-10">
       {/* Avatar and Logo */}
@@ -14,13 +16,15 @@ export default function Header() {
           Food Diary
         </h1>
       </div>
-      {/* Sign Up */}
+      {/* Sign In/ Sign Up */}
+
       <div>
-        <Button className="mr-4 bg-[#5025C5] hover:bg-[#3f1e9d] shadow-lg hover:shadow">
+        {session ? <SignOutButton /> : <SignInButton />}
+        {/* <Button className="mr-4 bg-[#5025C5] hover:bg-[#3f1e9d] shadow-lg hover:shadow">
           <a href="/login" rel="noopener noreferrer">
             Sign In
           </a>
-        </Button>
+        </Button> */}
       </div>
     </header>
   );

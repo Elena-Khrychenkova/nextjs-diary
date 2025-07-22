@@ -1,6 +1,6 @@
 import { auth } from "@/app/auth";
 import { Button } from "@/components/ui/button";
-import SignOut from "@/components/ui/signout";
+import SignOut from "@/components/ui/signout-button";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import MoodChart from "@/components/mood-chart";
@@ -150,7 +150,9 @@ export default async function HomePage() {
               intentional, empowered lifestyle.
             </p>
             <Button className="w-[240px] h-[48px]  bg-[#5025C5] hover:bg-[#3f1e9d] shadow-xl hover:shadow">
-              View All Metrics
+              <a href="/home/charts" rel="noopener noreferrer">
+                View All Metrics
+              </a>
             </Button>
           </div>
           <MoodChart data={moodCountsData} />
