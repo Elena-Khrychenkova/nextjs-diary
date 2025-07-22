@@ -4,6 +4,7 @@ import { z } from "zod";
 import postgres from "postgres";
 import { redirect } from "next/navigation";
 import { formSchema } from "@/lib/zod";
+import bcrypt from "bcryptjs";
 
 if (!process.env.DB_URL) {
   throw new Error("DB_URL is not found");
@@ -24,9 +25,10 @@ export async function createUser(prevState: any, formData: FormData) {
   });
 
   try {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
     await sql`
               INSERT INTO users (name, email, password)
-              VALUES (${data.name}, ${data.email}, ${data.password})
+              VALUES (${data.name}, ${data.email}, ${hashedPassword})
           `;
   } catch (error) {
     return { message: "Failed to create a user" };

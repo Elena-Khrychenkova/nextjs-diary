@@ -5,6 +5,7 @@ import { signInSchema } from "../lib/zod";
 import postgres from "postgres";
 import { Pool } from "@neondatabase/serverless";
 import PostgresAdapter from "@auth/pg-adapter";
+import bcrypt from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth(() => {
   const pool = new Pool({ connectionString: process.env.DB_URL });
@@ -23,14 +24,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth(() => {
             credentials
           );
           const sql = postgres(process.env.DB_URL!);
-          const data =
-            await sql`SELECT * FROM users WHERE email=${email} AND password=${password}`;
+          const data = await sql`SELECT * FROM users WHERE email=${email}`;
           const user = data[0];
           if (!user) {
             console.log("not found");
             throw new Error("Invalid credentials!");
           }
           console.log("user authenticated: ", user);
+
+          const passwordIsValid = await bcrypt.compare(password, user.password);
+
+          if (!passwordIsValid) {
+            throw new Error("Invalid credetials!");
+          }
+
           return {
             id: user.id.toString(),
             email: user.email,
