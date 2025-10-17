@@ -38,7 +38,7 @@ export async function createUser(prevState: any, formData: FormData) {
 }
 
 export async function createFoodIntakeLog(prevState: any, formData: FormData) {
-  const data = formSchema.parse({
+  const result = formSchema.safeParse({
     user_email: formData.get("user_email"),
     date: formData.get("date"),
     mood: formData.get("mood"),
@@ -49,17 +49,29 @@ export async function createFoodIntakeLog(prevState: any, formData: FormData) {
     sleep: formData.get("sleep"),
     weight: formData.get("weight"),
   });
-  console.log("Received data", data);
+  // console.log("Received data", result);
+  if (!result.success) {
+    return {
+      status: "error",
+      errors: result.error.flatten().fieldErrors,
+    };
+  }
+
+  const data = result.data;
   try {
     await sql`INSERT INTO food_intake(user_email, date, mood, activity, water, food_type, portion, sleep, weight)
     VALUES(${data.user_email}, ${data.date}, ${data.mood}, ${data.activity}, ${data.water}, ${data.foodType}, ${data.portionSize}, ${data.sleep}, ${data.weight})`;
   } catch (error) {
-    console.log("Error inserting food intake log: ", error);
+    // console.log("Error inserting food intake log: ", error);
     return {
+      status: "error",
       message: "Failed to creat a food intake log ",
       error: String(error),
     };
   }
   revalidatePath("/home");
-  redirect("/home");
+  // redirect("/home");
+  return {
+    status: "success",
+  };
 }
