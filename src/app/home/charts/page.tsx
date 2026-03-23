@@ -9,6 +9,7 @@ import WaterPortionRadarChart from "@/components/radar-chart";
 import { UserEntriesLineChart } from "@/components/entries-line-chart";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import WeeklyInsight from "@/components/weekly-insight";
 
 export default async function ChartsPage() {
   const session = await auth();
@@ -16,7 +17,7 @@ export default async function ChartsPage() {
   const moodCountsData = await getMoodCounts(session?.user?.email ?? "");
   const waterStatsData = await getWaterStats(session?.user?.email ?? "");
   const waterPortionData = await getWaterPortionStats(
-    session?.user?.email ?? ""
+    session?.user?.email ?? "",
   );
   const entriesPerDayData = await getEntriesPerDay(session?.user?.email ?? "");
   return (
@@ -79,6 +80,10 @@ export default async function ChartsPage() {
         </svg>
       </div>
       <div className="flex flex-col gap-24 py-[60px] px-[170px]">
+        {/*Analizer*/}
+        <div>
+          <WeeklyInsight user_email={session?.user?.email ?? ""} />
+        </div>
         {/* Mood Tracker */}
         <div className="flex flex-col">
           <h2 className="text-2xl font-semibold mb-6">
