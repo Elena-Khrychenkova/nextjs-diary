@@ -81,7 +81,7 @@ export async function createFoodIntakeLog(prevState: any, formData: FormData) {
   };
 }
 
-type WeeklyInsight = {
+export type WeeklyInsight = {
   patterns: string[];
   suggestions: string[];
   summary: string;

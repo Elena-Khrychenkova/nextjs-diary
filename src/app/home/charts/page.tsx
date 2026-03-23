@@ -9,7 +9,7 @@ import WaterPortionRadarChart from "@/components/radar-chart";
 import { UserEntriesLineChart } from "@/components/entries-line-chart";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import WeeklyInsight from "@/components/weekly-insight";
+import WeeklyInsightComponent from "@/components/weekly-insight";
 
 export default async function ChartsPage() {
   const session = await auth();
@@ -82,7 +82,7 @@ export default async function ChartsPage() {
       <div className="flex flex-col gap-24 py-[60px] px-[170px]">
         {/*Analizer*/}
         <div>
-          <WeeklyInsight user_email={session?.user?.email ?? ""} />
+          <WeeklyInsightComponent user_email={session?.user?.email ?? ""} />
         </div>
         {/* Mood Tracker */}
         <div className="flex flex-col">
